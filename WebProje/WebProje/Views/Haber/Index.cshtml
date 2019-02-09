@@ -1,0 +1,96 @@
+﻿@model PagedList.IPagedList<WebProje.Models.Haber>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    /**/
+
+    ViewBag.Title = "Haberler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h2>@WebProje.Resources.Kaynak.Haberler</h2>
+
+    <p>
+        @Html.ActionLink(@WebProje.Resources.Kaynak.YeniHaberEkle, "Create", "Haber", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+    @using (Html.BeginForm("Index", "Haber", FormMethod.Get))
+    {
+    <p>
+        @WebProje.Resources.Kaynak.BasligaGoreBul @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="@WebProje.Resources.Kaynak.Ara" />
+    </p>
+    }
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.HaberBasligi, "Index", new { sortOrder = ViewBag.BaslikSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.EkleyenKisi, "Index", new { sortOrder = ViewBag.EkleyenSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.Kategori, "Index", new { sortOrder = ViewBag.KategoriSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.HaberTarihi, "Index", new { sortOrder = ViewBag.TarihSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.Onay, "Index", new { sortOrder = ViewBag.OnaySortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.OkunmaSayisi, "Index", new { sortOrder = ViewBag.OkunmaSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @WebProje.Resources.Kaynak.Islemler
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Baslik)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Admin.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kategori)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HaberTarihi)
+                </td>
+                <td>
+                    @{
+                        if (item.Onay == null)
+                        {
+                            @(@WebProje.Resources.Kaynak.Belirtilmemis);
+                        }
+                        else if (item.Onay == true)
+                        {
+                            @(@WebProje.Resources.Kaynak.Onaylanmis);
+                        }
+                        else
+                        {
+                            @(@WebProje.Resources.Kaynak.Onaylanmamış)
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OkunmaSayisi)
+                </td>
+                <td>
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.Duzenle, "Edit", new { id = item.HaberID }) |
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.HaberiGor, "Index", "HaberYonlendir", item, new { }) |
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.Sil, "Delete", new { id = item.HaberID }, new { onclick ="return confirm('Bu haberi silmek istediğinize emin misiniz ?');"})
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    @Model.PageCount Sayfadan @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber). gösteriliyor.
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

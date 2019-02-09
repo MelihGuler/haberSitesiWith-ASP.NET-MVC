@@ -1,0 +1,84 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using WebProje.Models
+@model IPagedList<Uye>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@WebProje.Resources.Kaynak.UyelerListesi</h2>
+
+    <p>
+        @Html.ActionLink(@WebProje.Resources.Kaynak.YeniUye, "Create", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.UyeAdi, "Index", new { sortOrder = ViewBag.AdSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.Soyadi, "Index", new { sortOrder = ViewBag.SoyadSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.KullaniciAdi, "Index", new { sortOrder = ViewBag.KulAdiSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.EPosta, "Index", new { sortOrder = ViewBag.EPostaSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.Sifre, "Index", new { sortOrder = ViewBag.SifreSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @WebProje.Resources.Kaynak.SifremiHatirla
+            </th>
+            <th>
+                @WebProje.Resources.Kaynak.GirisYapildiMi
+            </th>
+            <th>
+                @Html.ActionLink(@WebProje.Resources.Kaynak.UyelikTarihi, "Index", new { sortOrder = ViewBag.UyelikTarihiSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KulAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EPosta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sifre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SifremiHatirla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GirisYapildiMi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UyelikTarihi)
+                </td>
+                <td>
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.Duzenle, "Edit", new { id = item.UyeID }, new { @class = "btn btn-primary btn-large" }) |
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.Detaylar, "Details", new { id = item.UyeID }, new { @class = "btn btn-primary btn-large" }) |
+                    @Html.ActionLink(@WebProje.Resources.Kaynak.Sil, "Delete", new { id = item.UyeID }, new { @class = "btn btn-primary btn-large" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Uye", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

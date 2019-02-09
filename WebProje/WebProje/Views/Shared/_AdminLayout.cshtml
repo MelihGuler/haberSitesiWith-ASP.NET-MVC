@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Haber Sitesi</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/modern-business.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">HABER SİTESİ</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @WebProje.Resources.Kaynak.Futbol
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                            @Html.ActionLink("Fenerbahçe", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Fenerbahce, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Galatasaray", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Galatasaray, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Beşiktaş", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Besiktas, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Trabzonspor", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Trabzonspor, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink(@WebProje.Resources.Kaynak.MilliTakim, "Index", "TakimBrans", new { takim = WebProje.Models.Takim.MilliTakim, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @WebProje.Resources.Kaynak.Basketbol
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            @Html.ActionLink("Fenerbahçe", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Fenerbahce, brans = WebProje.Models.Kategoriler.Basketbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Anadolu Efes", "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Efes, brans = WebProje.Models.Kategoriler.Basketbol }, new { @class = "dropdown-item" })
+                            @Html.ActionLink(@WebProje.Resources.Kaynak.MilliTakim, "Index", "TakimBrans", new { takim = WebProje.Models.Takim.MilliTakim, brans = WebProje.Models.Kategoriler.Basketbol }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink(@WebProje.Resources.Kaynak.DigerTakimlar, "Index", "TakimBrans", new { takim = WebProje.Models.Takim.Diger, brans = WebProje.Models.Kategoriler.Futbol }, new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+
+                        @Html.ActionLink(@WebProje.Resources.Kaynak.Haberler, "Index", "Haber", null, new { @Class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Uye/Index">@WebProje.Resources.Kaynak.Uyeler</a>
+                    </li>
+                    <li class="nav-item">
+
+                        @Html.ActionLink("Panel", "AdminIndex", "Admin", null, new { @Class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+
+                        @Html.ActionLink(@WebProje.Resources.Kaynak.CikisYap, "Cikis", "GirisYap", null, new { @Class = "nav-link" })
+                    </li>
+</div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright © HAKME @DateTime.Now.Year</p>
+        </div>
+    </footer>
+</body>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</html>

@@ -1,0 +1,91 @@
+﻿@model WebProje.Models.Haber
+@{
+    ViewBag.Title = @Model.Baslik;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<div class="haberFoto">
+        <img src="@Model.Foto" width="400" height="300"/>
+    </div>
+    <div><h2>@Model.Baslik</h2></div>
+    <div>
+        <p>@Model.Icerik</p>
+    </div>
+    <br />*@
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        @Model.Baslik
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-fluid" src=@Model.Foto alt="">
+        </div>
+
+        <div class="col-md-4">
+
+            <p>@Model.Icerik</p>
+
+        </div>
+
+    </div>
+
+</div>
+<br />
+
+
+<div class="container">
+   
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload">
+                    
+                        <textarea placeholder="@WebProje.Resources.Kaynak.YorumunuzuYazabilirsiniz"></textarea>
+                        <br />
+                        <button class="btn btn-success green"><i class="fa fa-share"></i>@WebProje.Resources.Kaynak.Yorumla</button>
+
+                    
+                </div><!-- Status Upload  -->
+            </div><!-- Widget Area -->
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h3>@WebProje.Resources.Kaynak.UyeYorumlari</h3>
+        </div><!-- /col-sm-12 -->
+    </div><!-- /row -->
+    <div class="row">
+        @foreach (var yorum in Model.Yorumlar)
+        {
+
+
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>@yorum.Uye.KulAdi</strong> <span class="text-muted">@yorum.YorumTarihi.Day/@yorum.YorumTarihi.Month/@yorum.YorumTarihi.Year</span>
+                    </div>
+                    <div class="panel-body">
+                        @yorum.Icerik
+                    </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+            <br /> <br /> <br />
+        }
+
+    </div><!-- /row -->
+</div><!-- /container -->

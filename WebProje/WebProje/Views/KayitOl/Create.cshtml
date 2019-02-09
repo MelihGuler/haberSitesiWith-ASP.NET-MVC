@@ -1,0 +1,197 @@
+﻿@model WebProje.Models.Uye
+
+@{
+    ViewBag.Title = "Üye Ol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/kayit.css" rel="stylesheet" />
+<!------ Include the above in your HEAD tag ---------->
+
+@using (Html.BeginForm("Create","KayitOl",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+
+
+
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <br /><br /><br /><br />
+                <img src="~/Content/Images/Resim1.png" alt="" />
+                <h3>@WebProje.Resources.Kaynak.Hosgeldiniz</h3>
+                <br />
+            </div>
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">@WebProje.Resources.Kaynak.KayitFormu</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+
+                                    @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.Ad } })
+                                    @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+
+                                </div>
+                                @*<div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name *" value="" />
+        </div>*@                     <br /><br />
+                                <div class="form-group">
+
+
+                                    @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.Soyad } })
+                                    @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                @*<div class="form-group">
+            <input type="text" class="form-control" placeholder="Last Name *" value="" />
+        </div>*@
+
+
+
+                                @*<div class="form-group">
+            <input type="password" class="form-control" placeholder="Password *" value="" />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+        </div>*@
+                                <br /><br />
+                                <div class="form-group">
+
+
+                                    @Html.EditorFor(model => model.KulAdi, new { htmlAttributes = new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.KullaniciAdi } })
+                                    @Html.ValidationMessageFor(model => model.KulAdi, "", new { @class = "text-danger" })
+
+                                </div>
+                                <br />
+                                @*<div class="form-group">
+            <div class="maxl">
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="male" checked>
+                    <span> Male </span>
+                </label>
+                <label class="radio inline">
+                    <input type="radio" name="gender" value="female">
+                    <span>Female </span>
+                </label>
+            </div>
+        </div>*@
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+
+                                    @Html.EditorFor(model => model.EPosta, new { htmlAttributes = new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.EPosta } })
+                                    @Html.ValidationMessageFor(model => model.EPosta, "", new { @class = "text-danger" })
+
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+
+
+                                    @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.Sifre, @type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+
+                                </div>
+                                @*<div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email *" value="" />
+        </div>*@
+                                @*<div class="form-group">
+            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
+        </div>
+        <div class="form-group">
+            <select class="form-control">
+                <option class="hidden" selected disabled>Please select your Sequrity Question</option>
+                <option>What is your Birthdate?</option>
+                <option>What is Your old Phone Number</option>
+                <option>What is your Pet Name?</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
+        </div>*@
+                                <input type="submit" class="btnRegister" value="@WebProje.Resources.Kaynak.KayitOl" />
+                                <br /><br />
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+    @*<div class="form-horizontal">
+            <h4>Üye Ol</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Soyad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.KulAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.KulAdi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.KulAdi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EPosta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EPosta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EPosta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sifre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Kayıt Ol" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+}
+<br /><br />

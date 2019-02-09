@@ -1,0 +1,53 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using WebProje.Models
+@model IPagedList<Haber>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="card" style="width: 18rem;">
+    @foreach (var Haber in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src=@Haber.Foto alt=@Haber.Baslik>
+            <div class="card-body">
+                <h5 class="card-title">@Haber.Baslik</h5>
+                @Html.ActionLink("OKU","Index","HaberYonlendir",Haber,new { @class="btn btn-primary"})
+                
+            </div>
+        </div>
+
+    }
+    
+    @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "TakimBrans", new { SayfaNo = _sayfaNo,takim=Model.ElementAt(0).Takim,brans=Model.ElementAt(0).Kategori }))
+</div>*@
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            @foreach (var Haber in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <a href="@Url.Action("Index", "HaberYonlendir", Haber)">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src=@Haber.Foto data-holder-rendered="true"></a>
+                            <div class="card-body">
+                                <p class="card-text">@Haber.Baslik</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        @Html.ActionLink(@WebProje.Resources.Kaynak.Oku, "Index", "HaberYonlendir", Haber, new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        @Html.PagedListPager(Model, _sayfaNo => Url.Action("Index", "TakimBrans", new { SayfaNo = _sayfaNo, takim = Model.ElementAt(0).Takim, brans = Model.ElementAt(0).Kategori }))
+    </div>
+    
+</div>

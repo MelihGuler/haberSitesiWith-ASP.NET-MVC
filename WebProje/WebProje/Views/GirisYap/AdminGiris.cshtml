@@ -1,0 +1,42 @@
+﻿@model WebProje.Models.Admin
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@WebProje.Resources.Kaynak.AdminGirisSayfasi</h5>
+                    @ViewBag.Mesaj
+                    @*<form class="form-signin">*@
+                    @using (Html.BeginForm("AdminGiris", "GirisYap", FormMethod.Post, new { @class = "form-signin" }))
+                    {
+                        
+                        <div class="form-label-group">
+                            @Html.TextBoxFor(x => x.EPosta, new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.EmailAdresi })
+                            @*<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>*@
+                            @*<label for="inputEmail">Email address</label>*@
+                        </div>
+                        <br />
+                        <div class="form-label-group">
+                            @Html.TextBoxFor(x => x.Sifre, new { @class = "form-control", @placeholder = @WebProje.Resources.Kaynak.Sifre, @type = "password" })
+                            @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Password</label>*@
+                        </div>
+                        <br />                     
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">@WebProje.Resources.Kaynak.GirisYap</button>
+                        <hr class="my-4">
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br /><br />
+
